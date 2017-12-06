@@ -2,11 +2,11 @@
 
 Some "byproducts", or say "formula translations" of my course CSE 6644 / MATH 6644. :)
 
-Naïve implementations of some Krylov subspace methods without preconditioning: 
+Naïve implementations of some Krylov subspace methods: 
 
 * Restarted Full Orthogonalization Method (FOM)
-* Restarted Generalized Minimum Residual Method (GMRES), with Arnoldi / Householder orthonormalization
-* Conjugate Gradient (CG), 4 different versions
+* Restarted Generalized Minimum Residual Method (GMRES), with Arnoldi / Householder orthonormalization and left preconditioning matrix $M$
+* Conjugate Gradient (CG), 4 different versions, classic version with left preconditioning matrix $M$
 * Conjugate Residual (CR)
 * Biconjugate Gradient without/with Stabilized (BiCG/BiCGStab)
 
@@ -33,15 +33,15 @@ FOM will restart every `restart` inner iterations, the total number of iteration
 
 ### Input Parameters for GMRES
 
-`[x, converged, iter_cnt, res_norm] = GMRES(A, b, res_tol, max_iter, restart, use_HH)`
+`[x, converged, iter_cnt, res_norm] = GMRES(A, b, restart, res_tol, max_iter, M, use_HH)`
 
-GMRES will restart every `restart` inner iterations, the total number of iterations will not exceed `restart * max_iter`. If `use_HH == 1`, GMRES will use Householder orthogonalization; otherwise GMRES will use modified Gram-Schmidt (Arnoldi) orthogonalization.
+GMRES will restart every `restart` inner iterations, the total number of iterations will not exceed `restart * max_iter`. `M` is the matrix for left preconditioning $M^{-1} A x = M^{-1}b$. If `use_HH == 1`, GMRES will use Householder orthogonalization; otherwise GMRES will use modified Gram-Schmidt (Arnoldi) orthogonalization.
 
 Default value for `restart` is `min(10, size(A, 1))`, for `max_iter` is `min(size(A, 1) / restart, 10)`, for `use_HH` is $1$. 
 
 
 
-## A Simple Comparison 
+## A Simple Comparison (Without Preconditioning) 
 
 ![test_KSM](test_KSM.png)
 

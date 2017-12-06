@@ -1,4 +1,4 @@
-function [V, H, beta] = Arnoldi_MGS(A, r0, m, M)
+function [V, H, beta] = Arnoldi_MGS(A, r0, m)
 % Modified Gram-Schmidt for orthonormalizing Krylov subspace $K_{m}(A, r0)$
 % V: the orthonormalized basis; H, beta: for GMRES
 	beta = norm(r0, 2);
@@ -8,7 +8,6 @@ function [V, H, beta] = Arnoldi_MGS(A, r0, m, M)
 	V(:, 1) = r0 / beta;
 	for j = 1 : m
 		w = A * V(:, j);
-		w = M \ w;  % Left preconditioning
 		for i = 1 : j
 			H(i, j) = w' * V(:, i);
 			w = w - H(i, j) * V(:, i);

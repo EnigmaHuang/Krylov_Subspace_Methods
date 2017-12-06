@@ -1,4 +1,4 @@
-function [W, H, beta] = GMRES_Householder(A, r0, m, M)
+function [W, H, beta] = GMRES_Householder(A, r0, m)
 % Householder for orthonormalizing Krylov subspace $K_{m}(A, r0)$
 % W: the Householder unit vectors; H, beta: for GMRES
 	n    = size(A, 1);
@@ -33,7 +33,6 @@ function [W, H, beta] = GMRES_Householder(A, r0, m, M)
 		v = v / norm(v, 2);
 		% Form z = Pj * Pj-1 * ... P1 * A * v.
 		v = A * v;
-		v = M \ v;    % Left Preconditioning
 		for k = 1 : j
 		    v = v - W(:, k) * (2 * (W(:, k)' * v));
 		end
