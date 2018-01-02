@@ -1,6 +1,7 @@
 function [x, converged, iter_cnt, res_norm] = PCG(A, b, res_tol, max_iter, M)
 % (Left) Preconditioned Conjugate Gradient method
-% Correspond to Algoithm 9.1 in Yousef Saad's "Iterative Methods for Sparse Linear System (2nd Edition)"
+% Correspond to Algoithm 9.1 in Yousef Saad's "Iterative Methods 
+% for Sparse Linear System (2nd Edition)"
 	n = size(A, 1);
 	
 	if (nargin < 3)	res_tol  = 1e-9; end

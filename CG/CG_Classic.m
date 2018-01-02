@@ -1,6 +1,8 @@
 function [x, converged, iter_cnt, res_norm] = CG_Classic(A, b, res_tol, max_iter)
 % Classic Conjugate Gradient method
-% Correspond to Algoithm 2.1 in Gear's paper "s-step Iterative Methods  
+% Correspond to Algorith 6.18 in Yousef Saad's "Iterative 
+% Methods for Sparse Linear System (2nd Edition)"
+% Or Algoithm 2.1 in Gear's paper "s-step Iterative Methods  
 % for Symmetric Linear Systems"
 	if (nargin < 3)	res_tol  = 1e-9; end
 	if (nargin < 4)	max_iter = 1000; end
