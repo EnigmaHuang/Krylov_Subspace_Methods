@@ -18,7 +18,7 @@ cd ../FOM
 [~, ~, ic_fom, rn_fom] = FOM(A, b, 1e-9, 100, 50);
 
 cd ../GMRES
-[~, ~, ic_gmres, rn_gmres] = GMRES(A, b, 1e-9, 100, 50, 0);
+[~, ~, ic_gmres, rn_gmres] = GMRES(A, b, 50, 1e-9, 100);
 
 cd ..
 
@@ -39,4 +39,4 @@ xlabel('Iterations'), ylabel('Residual 2-norm'), grid on, hold on
 legend('BiCGStab', 'BiCG', 'CR', 'CG-Classic', 'FOM-50', 'GMRES-50'), hold on
 title_str1 = 'Krylov Subspace Methods for Solving Ax = b';
 title_str2 = 'Matrix: delsq(numgrid(''S'', 50))';
-title({[title_str1]; [title_str2]}), hold off
+title({title_str1; title_str2}), hold off

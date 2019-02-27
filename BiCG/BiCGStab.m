@@ -24,8 +24,7 @@ function [x, converged, iter_cnt, res_norm] = BiCGStab(A, b, res_tol, max_iter)
 		As = A * s;
 		omega = (As' * s) / (As' * As);
 		x = x + alpha * p + omega * s;
-		
-		r_old   = r;
+
 		rho_old = rho;
 		r   = s - omega * As;
 		rho = r' * r0s;
